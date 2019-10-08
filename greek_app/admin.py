@@ -6,6 +6,7 @@ class SymbolAdmin(admin.ModelAdmin):
     list_display = ('expansion','type','date','manuscript')
     search_fields = ['expansion',]
     list_filter = ('type', 'date','scribe','manuscript')
+    autocomplete_fields = ['type']
 
 admin.site.register(Symbol, SymbolAdmin)
 

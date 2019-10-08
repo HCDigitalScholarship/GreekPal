@@ -23,6 +23,7 @@ class Symbol(models.Model):
     image_height = models.PositiveIntegerField(null=True, blank=True, editable=False, default="150")
     image_width = models.PositiveIntegerField(null=True, blank=True, editable=False, default=None)
     expansion = models.CharField(max_length=220, blank=True, null=True)
+    base_expansion = models.CharField(max_length=220, blank=True, null=True)
     transcription = models.CharField(max_length=220, blank=True, null=True)
     type = models.ForeignKey(Type, on_delete=models.CASCADE, blank=True, null=True, related_name='symbol_type')
     text = models.CharField(max_length=220, blank=True, null=True)
@@ -35,7 +36,7 @@ class Symbol(models.Model):
         return self.expansion
 
     def save(self):
-        self.transcription = ''.join([base(i) for i in self.expansion])
+        self.base_expansion = ''.join([base(i) for i in self.expansion])
         if not self.image:
             return
 
