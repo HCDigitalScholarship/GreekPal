@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <div class="container">
+            <div class="row center-vertically">
+                <div class="col-md-10 text-center">
+                    <table id="example-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Expansion</th>
+              <th>Transciption</th>
+              <th>Type</th>
+              <th>Text</th>
+              <th>Date</th>
+              <th>Place</th>
+              <th>Scribe</th>
+              <th>Manuscript</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          {% for symbol in symbols %}
+              <tr>
+                 <td><img style="height=10px;" src="{% static symbol.image.name  %}"></td>
+                 <td>{{ symbol.expansion|default_if_none:"" }}</td>
+              <td>{{ symbol.transcription|default_if_none:"" }}</td>
+              <td>{{ symbol.type|default_if_none:"" }}</td>
+                <td>{{ symbol.text|default_if_none:"" }}</td>
+              <td>{{ symbol.date|default_if_none:"" }}</td>
+              <td>{{ symbol.place|default_if_none:"" }}</td>
+              <td>{{ symbol.scribe|default_if_none:"" }}</td>
+              <td>{{ symbol.manuscript|default_if_none:"" }}</td>
+              </tr>
+          {% endfor %}
+
+
+          </tbody>
+        </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends "base2.html" %}
+
+{% load static %}
+{% block content %}
+
+    {% block extrastyle %}
+
+    <link href="{% static 'datatables_view/css/style.css' %}" rel="stylesheet" />
+
+    <link rel='stylesheet' href="{% static 'datatables.net-bs/css/dataTables.bootstrap.min.css' %}"></script>
+    <link rel='stylesheet' href="{% static 'datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}"></script>
+
+{% endblock extrastyle %}
+
+{% block extrajs %}
+
+    <script type="text/javascript" src="{% static 'datatables_view/js/utils.js' %}"></script>
+
+    <script src="{% static 'datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static 'jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static 'pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'pdfmake/build/vfs_fonts.js' %}"></script>
+
+{% endblock extrajs %}
+
+
+
+    <div class="container">
+            <div class="row center-vertically">
+                <div class="col-md-8">
+                <table id="example" class="display" style="width:100%">
+               <thead>
+            <tr>
+              <th>Image</th>
+              <th>Expansion</th>
+              <th>Transciption</th>
+              <th>Type</th>
+              <th>Text</th>
+              <th>Date</th>
+              <th>Place</th>
+              <th>Scribe</th>
+              <th>Manuscript</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+
+
+          </tbody>
+        </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+/*
+  $(document).ready(function() {
+    $('#example').DataTable( {
+         "processing": true,
+        stateSave: true,
+        "serverSide": true,
+        "ajax": "{% url 'symbol_json' %}",
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+} );
+*/
+/*
+$(document).ready(function() {
+    $('#example-table').DataTable( {
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+} );
+*/
+</script>
+
+    <script>
+/*
+    $(document).ready(function() {
+    // DataTable
+    var table = $('#example-table').datatable({
+        // ...
+        "processing": true,
+        stateSave: true,
+        "serverSide": true,
+        "ajax": "{% url 'symbol_json' %}",
+        "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"
+        },
+        dom: 'Brtip',
+        buttons: [
+               'copy',
+               'excel',
+               'csv',
+               'pdf',
+               'print'
+        ]
+    } );
+} );
+*/
+</script>
+{% endblock %}

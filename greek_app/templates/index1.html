@@ -1,0 +1,128 @@
+{% extends "base1.html" %}
+
+{% load static %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+               <thead>
+            <tr>
+              <th>Image</th>
+              <th>Expansion</th>
+              <th>Transciption</th>
+              <th>Type</th>
+              <th>Text</th>
+              <th>Date</th>
+              <th>Place</th>
+              <th>Scribe</th>
+              <th>Manuscript</th>
+            </tr>
+          </thead>
+          <tbody>
+
+{% for symbol in symbols %}
+              <tr>
+                 <td><img style="height=10px;" src="{% static symbol.image.name  %}"></td>
+                 <td>{{ symbol.expansion|default_if_none:"" }}</td>
+              <td>{{ symbol.transcription|default_if_none:"" }}</td>
+              <td>{{ symbol.type|default_if_none:"" }}</td>
+                <td>{{ symbol.text|default_if_none:"" }}</td>
+              <td>{{ symbol.date|default_if_none:"" }}</td>
+              <td>{{ symbol.place|default_if_none:"" }}</td>
+              <td>{{ symbol.scribe|default_if_none:"" }}</td>
+              <td>{{ symbol.manuscript|default_if_none:"" }}</td>
+              </tr>
+          {% endfor %}
+
+
+          </tbody>
+        </table>
+
+
+    <script>
+
+ $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#example thead tr').clone(true).appendTo( '#example thead' );
+    $('#example thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
+    var table = $('#example').DataTable( {
+
+    } );
+
+
+} );
+
+
+/*
+$(document).ready(function() {
+    $('#example-table').DataTable( {
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+} );
+*/
+</script>
+
+    <script>
+/*
+    $(document).ready(function() {
+    // DataTable
+    var table = $('#example-table').datatable({
+        // ...
+        "processing": true,
+        stateSave: true,
+        "serverSide": true,
+        "ajax": "{% url 'symbol_json' %}",
+        "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"
+        },
+        dom: 'Brtip',
+        buttons: [
+               'copy',
+               'excel',
+               'csv',
+               'pdf',
+               'print'
+        ]
+    } );
+} );
+*/
+</script>
+{% endblock %}

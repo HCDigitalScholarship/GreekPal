@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/Burger-Menu-1.css">
+    <link rel="stylesheet" href="static/css/Burger-Menu.css">
+    <link rel="stylesheet" href="static/css/Data-Table-1.css">
+    <link rel="stylesheet" href="static/css/Data-Table.css">
+    <link rel="stylesheet" href="static/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+
+
+
+
+ <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+</head>
+
+<body>
+    <div id="home"></div>
+            <ul class="b-nav">
+                <li class="b-link--active b-link">Item 1<a href="#">Link</a></li>
+                <li class="b-link">Item 2<a href="#">Link</a></li>
+                <li class="b-link">Item 3<a href="#">Link</a></li>
+                <li class="b-link">Item 4<a href="#">Link</a></li>
+            </ul>
+            <div class="b-container">
+                <div class="b-menu">
+                    <div class="b-bun b-bun--top"></div>
+                    <div class="b-bun b-bun--mid"></div>
+                    <div class="b-bun b-bun--bottom"></div>
+                </div>
+            </div>{% block content %}{% endblock %}</div>
+    </div>
+
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="static/js/Burger-Menu.js"></script>
+    <script src="static/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/Holt59/datatable/master/js/datatable.jquery.js"></script>
+    <script src="https://cdn.rawgit.com/Holt59/datatable/master/js/datatable.js"></script>
+    <script src="static/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+
+<script>
+/*
+    $(document).ready(function() {
+    // DataTable
+    var table = $('#example-table').datatable({
+        // ...
+        "processing": true,
+        stateSave: true,
+        "serverSide": true,
+        "ajax": "{% url 'symbol_json' %}",
+        "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"
+        },
+        dom: 'Brtip',
+        buttons: [
+               'copy',
+               'excel',
+               'csv',
+               'pdf',
+               'print'
+        ]
+    } );
+} );
+*/
+</script>
+
+<script>
+
+    $('#example-table').datatable({
+    pageSize: 50,
+    sort: [true, true, true, true, true, true, true, true, true],
+    filters: [false, 'select', true, 'select', true, true, true, true, 'select'],
+    filterText: 'search',
+    onChange: function(old_page, new_page){
+      console.log('changed from ' + old_page + ' to ' + new_page);
+    }
+}) ;
+
+
+
+    </script>
+</body>
+
+</html>
+
+
