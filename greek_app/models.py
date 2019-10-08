@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 import PIL.Image
-from PIL import ImageEnhance
+from greek_accentuation.characters import base
 
 
 class Type(models.Model):
@@ -35,6 +35,7 @@ class Symbol(models.Model):
         return self.expansion
 
     def save(self):
+        self.transcription = ''.join([base(i) for i in self.expansion])
         if not self.image:
             return
 
@@ -45,3 +46,4 @@ class Symbol(models.Model):
         image.thumbnail(size)
         #image = image.resize(size)
         image.save(self.image.path)
+
