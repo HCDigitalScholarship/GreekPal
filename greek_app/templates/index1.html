@@ -15,6 +15,7 @@
             <tr>
               <th>Image</th>
               <th>Expansion</th>
+              <th>Base Expansion</th>
               <th>Transcription</th>
               <th>Type</th>
               <th>Text</th>
@@ -28,8 +29,9 @@
 
 {% for symbol in symbols %}
               <tr>
-                 <td><img style="height=10px;" src="{% static symbol.image.name  %}"></td>
+                 <td><img src="{% static symbol.image.name  %}"></td>
                  <td>{{ symbol.expansion|default_if_none:"" }}</td>
+                <td>{{ symbol.base_expansion|default_if_none:"" }}</td>
               <td>{{ symbol.transcription|default_if_none:"" }}</td>
               <td>{{ symbol.type|default_if_none:"" }}</td>
                 <td>{{ symbol.text|default_if_none:"" }}</td>
