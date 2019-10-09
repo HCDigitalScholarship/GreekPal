@@ -25,9 +25,11 @@
               <th>Manuscript</th>
             </tr>
           </thead>
+                 
           <tbody>
 
 {% for symbol in symbols %}
+
               <tr>
                  <td><img src="{% static symbol.image.name  %}"></td>
                  <td>{{ symbol.expansion|default_if_none:"" }}</td>
@@ -66,10 +68,24 @@
         } );
     } );
 
+
     var table = $('#example').DataTable( {
 
     } );
 
+    $("#example thead th").each( function ( i ) {
+        var select = $('<select><option value=""></option></select>')
+            .appendTo( $(this).empty() )
+            .on( 'change', function () {
+                table.column( i )
+                    .search( $(this).val() )
+                    .draw();
+            } );
+
+        table.column( i ).data().unique().sort().each( function ( d, j ) {
+            select.append( '<option value="'+d+'">'+d+'</option>' )
+        } );
+    } );
 
 } );
 
