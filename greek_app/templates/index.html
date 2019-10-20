@@ -26,7 +26,7 @@
 
           {% for symbol in symbols %}
               <tr>
-                 <td><img style="height=10px;" src="{% static symbol.image.name  %}"></td>
+                 <td><img src="{% static symbol.image.name  %}"></td>
                  <td>{{ symbol.expansion|default_if_none:"" }}</td>
               <td>{{ symbol.transcription|default_if_none:"" }}</td>
               <td>{{ symbol.type|default_if_none:"" }}</td>
