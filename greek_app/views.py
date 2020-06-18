@@ -4,16 +4,12 @@ from greek_app.models import Symbol
 from django.utils.html import escape, format_html, mark_safe
 
 
-# Create your views here.
 def home(request):
-    if request.method == 'POST':
-        return render(request, 'index.html',)
-
-    else:
-        symbols = Symbol.objects.all()
-        context = {}
-        context['symbols'] = symbols
-        return render(request, 'index1.html', context)
+    
+    symbols = Symbol.objects.all()
+    context = {}
+    context['symbols'] = symbols
+    return render(request, 'index1.html', context)
 
 
 class SymbolJson(BaseDatatableView):
