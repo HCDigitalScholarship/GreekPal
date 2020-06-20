@@ -9,7 +9,7 @@ def home(request):
     symbols = Symbol.objects.all()
     context = {}
     context['symbols'] = symbols
-    return render(request, 'index1.html', context)
+    return render(request, 'index.html', context)
 
 
 class SymbolJson(BaseDatatableView):
@@ -37,7 +37,7 @@ class SymbolJson(BaseDatatableView):
         # so, if 'translation' is empty, i.e. no one enters any information in 'translation', we display 'waiting';
         # otherwise, we display 'processing'.
         if column == 'image':
-            return mark_safe(format_html(f"<img style='height=10px; src='/static/{row.image.name}'>"))
+            return mark_safe(format_html(f"<img style='height=10px;' src='/static/{row.image.name}'>"))
 
         if column == 'expansion':
             return format_html("<p>{}</p>", row.expansion,)
