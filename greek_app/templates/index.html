@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{% static '/fonts/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static '/css/Bootstrap-DataTables.css' %}">
     <link rel="stylesheet" href="{% static '/css/custom-buttons.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
  
@@ -36,14 +38,19 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Search with Image</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="class="btn btn-light close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
+              <form method="get">
+                <input class="btn btn-light" type="file" id="uploadedfile" name="uploadedfile">
+              </form>
+             or <button class="btn btn-light" id="startbutton">Take photo</button> 
+
                 <div class="camera">
-                    <video id="video">Video stream not available.</video>
-                    <button id="startbutton">Take photo</button> 
+
+                  <video id="video">Video stream not available.</video>
                   </div>
                   <canvas id="canvas">
                   </canvas>
@@ -96,30 +103,7 @@
 
       <!-- end draw modal -->
 
-      <!-- search modal -->
-      <div class="modal" id="SearchModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Search Fields</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-             ////
-
-            </div>
-           
-            <div class="modal-footer">
-          
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- end draw modal -->
-
+      
     <section style="background-image: linear-gradient(to right, #6a3093, #a044ff);">
         <div class="container">
             
@@ -201,7 +185,6 @@
               <th>Base Expansion</th>
               <th>Transcription</th>
               <th>Type</th>
-              <th>Text</th>
               <th>Date</th>
               <th>Place</th>
               <th>Scribe</th>
