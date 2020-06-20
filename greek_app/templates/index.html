@@ -121,7 +121,26 @@
           </thead>
                  
          
-         
+          <tbody>
+
+            {% for symbol in symbols %}
+            
+                          <tr>
+                             <td><img src="{% static symbol.image.name  %}"></td>
+                            
+                            <td>{{ symbol.base_expansion|default_if_none:"" }}</td>
+                          <td>{{ symbol.transcription|default_if_none:"" }}</td>
+                          <td>{{ symbol.type|default_if_none:"" }}</td>
+                            <td>{{ symbol.text|default_if_none:"" }}</td>
+                          <td>{{ symbol.date|default_if_none:"" }}</td>
+                          <td>{{ symbol.place|default_if_none:"" }}</td>
+                          <td>{{ symbol.scribe|default_if_none:"" }}</td>
+                          <td>{{ symbol.manuscript|default_if_none:"" }}</td>
+                          </tr>
+                      {% endfor %}
+            
+            
+                      </tbody>
             </table>
           </div>
         </div>
@@ -145,6 +164,7 @@
     <script src="{% static '/js/theme.js' %}"></script>
     <script src="{% static '/js/capture.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sketchpad/0.1.0/scripts/sketchpad.js"></script>
+    <script src="{% static '/js/diacritics.js' %}"></script>
 
     <script>
 
@@ -167,9 +187,7 @@
        
        
            var table = $('#symboltable').DataTable( {
-            "processing": true,
-            "serverSide": true,
-            "ajax": "{% url 'symbol_json' %}",
+            
        
            } );
        
@@ -191,7 +209,6 @@
          
               
        </script>
-    <script src="{% static '/js/diacritics.js' %}"></script>
     <script>
       var sketchpad = new Sketchpad({
         element: '#sketchpad',
