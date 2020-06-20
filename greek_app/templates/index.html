@@ -256,6 +256,7 @@
     <script src="{% static '/js/diacritics.js' %}"></script>
 
     <script>
+      $('#symboltable').DataTable().column( 0 ).header().text('');
 function filterColumn ( i ) {
     $('#symboltable').DataTable().column( i ).search(
         $('#col'+i+'_filter').val(),
