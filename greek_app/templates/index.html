@@ -290,7 +290,7 @@ function filterColumn ( i ) {
            } );
        
            $("#symboltable thead th").each( function ( i ) {
-               if (i>1){
+               if (i>=1){
                var select = $('<select><option value=""></option></select>')
                    .appendTo( $(this).empty() )
                    .on( 'change', function () {
