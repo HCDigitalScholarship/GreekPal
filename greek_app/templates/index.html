@@ -256,7 +256,6 @@
     <script src="{% static '/js/diacritics.js' %}"></script>
 
     <script>
-      $('#symboltable').DataTable().column( 0 ).header().text('');
 function filterColumn ( i ) {
     $('#symboltable').DataTable().column( i ).search(
         $('#col'+i+'_filter').val(),
@@ -291,6 +290,7 @@ function filterColumn ( i ) {
            } );
        
            $("#symboltable thead th").each( function ( i ) {
+               if (i>1){
                var select = $('<select><option value=""></option></select>')
                    .appendTo( $(this).empty() )
                    .on( 'change', function () {
@@ -302,6 +302,7 @@ function filterColumn ( i ) {
                table.column( i ).data().unique().sort().each( function ( d, j ) {
                    select.append( '<option value="'+d+'">'+d+'</option>' )
                } );
+            }
            } );
        
                
