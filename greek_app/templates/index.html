@@ -65,7 +65,8 @@
 
               </div>
 
-              
+             
+
                 <div class="camera">
                   
                  
@@ -75,10 +76,8 @@
                   <canvas id="canvas">
                   </canvas>
                   <div id="overlay">
-                    <canvas class="sketchpad top" id="sketchpad"><canvas>
-                      <div class="output">
-                      <img id="photo" class="bottom" alt="The screen capture will appear in this box."> 
-                      </div>
+                    <div class="output"><img id="photo" alt="The screen capture will appear in this box."></div>
+                    <canvas class="sketchpad" id="sketchpad" width="400" height="400"><canvas>
                   </div>
             </div>
             <div class="modal-footer">
@@ -324,6 +323,8 @@ function filterColumn ( i ) {
         height: 400
       });
       sketchpad.penSize = 20;
+      
+
 
       function sketchJSON(){
         data = sketchpad.toJSON();
