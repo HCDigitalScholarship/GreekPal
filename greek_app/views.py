@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from greek_app.models import Symbol
 
@@ -19,6 +20,9 @@ def home(request):
         context['symbols'] = symbols
         return render(request, 'index.html', context)
 
+def logout_view(request):
+    logout(request)
+    return redirect(home)
 
 class SymbolJson(BaseDatatableView):
     # the model you're going to show

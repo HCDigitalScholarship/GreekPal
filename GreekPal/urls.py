@@ -13,10 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from greek_app.views import logout_view
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
 from greek_app import views
 from django.contrib.flatpages import views as flat_views
+from django.contrib.auth import logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +37,5 @@ urlpatterns += [
 # Social auth
 urlpatterns += [
     path('', include('social_django.urls', namespace='social')),
+    path('logout/', views.logout_view, name='logout'),
 ]

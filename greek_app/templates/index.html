@@ -26,7 +26,14 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="modal" data-target="#CameraModal"><i class="fa fa-camera"></i>&nbsp;Search with image</a></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="modal" data-target="#DrawModal"><i class="fa fa-pencil-square-o"></i>&nbsp;Search with drawing</a></li>
-                    
+                    {% if user.is_authenticated %}
+                    <p>Logged as {{ user.username }}</p>
+                    <li class="nav-item" role="presentation"></li><a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                  {% else %}
+                  <li class="nav-item" role="presentation"><a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+                      Login
+                    </a>
+                  {% endif %}
                 </ul>
         </div>
         </div>
