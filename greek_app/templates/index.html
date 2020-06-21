@@ -65,14 +65,20 @@
 
               </div>
 
+              
                 <div class="camera">
+                  
+                 
 
                   <video id="video">Video stream not available.</video>
                   </div>
                   <canvas id="canvas">
                   </canvas>
-                  <div class="output">
-                    <img id="photo" alt="The screen capture will appear in this box."> 
+                  <div id="overlay">
+                    <canvas class="sketchpad top" id="sketchpad"><canvas>
+                      <div class="output">
+                      <img id="photo" class="bottom" alt="The screen capture will appear in this box."> 
+                      </div>
                   </div>
             </div>
             <div class="modal-footer">
@@ -96,7 +102,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <canvas class="sketchpad" id="sketchpad"><canvas> 
+              
             </div>
            
             <div class="modal-footer">
