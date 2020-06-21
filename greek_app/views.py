@@ -1,15 +1,23 @@
 from django.shortcuts import render
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from greek_app.models import Symbol
+
 from django.utils.html import escape, format_html, mark_safe
 
 
 def home(request):
-    
-    symbols = Symbol.objects.all()
     context = {}
-    context['symbols'] = symbols
-    return render(request, 'index.html', context)
+
+    if request.POST:
+        uploadedfile = request.FILES['uploadedfile']
+        print(uploadedfile.read())
+        symbols = Symbol.objects.all()
+        context['symbols'] = symbols
+        return render(request, 'index.html', context)
+    else:
+        symbols = Symbol.objects.all()
+        context['symbols'] = symbols
+        return render(request, 'index.html', context)
 
 
 class SymbolJson(BaseDatatableView):

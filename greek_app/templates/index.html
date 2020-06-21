@@ -43,9 +43,10 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="get">
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token%}
                 <input style="width:100%; margin-bottom: 5px;" class="btn btn-outline-dark" type="file" id="uploadedfile" name="uploadedfile">
-              </form>
+             
               <div class="btn-group"style="width:100%;"">
 
               <button style="width:80%; margin-bottom: 10px;" class="btn btn-outline-dark text-left" id="startbutton">Take photo</button> 
@@ -64,7 +65,8 @@
                   </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Search</button>
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
             </div>
           </div>
         </div>
