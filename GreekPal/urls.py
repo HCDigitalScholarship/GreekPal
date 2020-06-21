@@ -28,5 +28,5 @@ urlpatterns = [
 # flat pages 
 urlpatterns += [
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('about/', flat_views.flatpage, {'url': '/about/'}, name = 'about'),
+    path('about/', flat_views.flatpage, {'url': '/about/'}, name='about'),
 ]
