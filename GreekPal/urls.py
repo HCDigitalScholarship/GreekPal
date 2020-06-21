@@ -30,3 +30,8 @@ urlpatterns += [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('about/', flat_views.flatpage, {'url': '/about/'}, name='about'),
 ]
+
+# Social auth
+urlpatterns += [
+    path('', include('social_django.urls', namespace='social')),
+]
