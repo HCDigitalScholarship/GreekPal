@@ -1,14 +1,14 @@
-#overlay {
+#overlay{
     display:inline-block;
     width:400px; 
     height:400px;
     margin: 0 auto; 
-    background: white; 
+    background: black; 
     position:relative; 
     border:5px solid black; 
     border-radius: 10px; 
     box-shadow: 0 5px 50px #333}
-  }  
+
 
   .bottom {
     position:relative;
