@@ -10,8 +10,8 @@ def home(request):
     context = {}
 
     if request.POST:
-        uploadedfile = request.FILES['uploadedfile']
-        print(uploadedfile.read())
+        data = request.POST.get('data',None)
+        print(data)
         symbols = Symbol.objects.all()
         context['symbols'] = symbols
         return render(request, 'index.html', context)
