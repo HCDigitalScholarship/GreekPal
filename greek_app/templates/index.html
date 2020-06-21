@@ -44,10 +44,14 @@
             </div>
             <div class="modal-body">
               <form method="get">
-                <input style="width:100%; margin-bottom: 5px;" class="btn btn-light" type="file" id="uploadedfile" name="uploadedfile">
+                <input style="width:100%; margin-bottom: 5px;" class="btn btn-outline-dark" type="file" id="uploadedfile" name="uploadedfile">
               </form>
-              <button style="width:100%; margin-bottom: 10px;" class="btn btn-light text-left" id="startbutton">Take photo</button> 
+              <div class="btn-group"style="width:100%;"">
 
+              <button style="width:80%; margin-bottom: 10px;" class="btn btn-outline-dark text-left" id="startbutton">Take photo</button> 
+              <button style="width:20%; margin-bottom: 10px;" class="btn btn-outline-dark text-left" id="switchcamera"><img width=35 src="{% static '/img/switchcamera.png' %}"/></button> 
+
+              </div>
 
                 <div class="camera">
 
