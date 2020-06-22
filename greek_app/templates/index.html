@@ -72,12 +72,14 @@
 
                   <video id="video">Video stream not available.</video>
                   </div>
-                  <canvas id="canvas">
+                  <canvas id="canvas1">
                   </canvas>
-                  <div id="overlay">
-                    <div class="output "><img id="photo" alt="The screen capture will appear in this box."></div>
+                 
+                    <div class="output"><img id="photo" alt="The screen capture will appear in this box."></div>
                     <canvas class="sketchpad" id="sketchpad" height="400" width="400"><canvas>
-                  </div>
+                      
+                  
+        
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-light" onclick="sketchpad.undo()">
@@ -238,7 +240,26 @@
     <script src="{% static '/js/capture.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sketchpad/0.1.0/scripts/sketchpad.js"></script>
     <script src="{% static '/js/diacritics.js' %}"></script>
-
+    <script>
+      var sketchpad = new Sketchpad({
+        element: '#sketchpad',
+        width: 400,
+        height: 400
+      });
+      sketchpad.penSize = 20;
+      
+      function sketchJSON(){
+        data = sketchpad.toJSON();
+        $.ajax({
+          url : "/",
+          type: "POST",
+          data : {'data': data, 'csrfmiddlewaretoken': '{{ csrf_token }}',},
+          dataType : "json",
+    
+    
+        });
+      };
+    </script>
     <script>
 function filterColumn ( i ) {
     $('#symboltable').DataTable().column( i ).search(
@@ -293,26 +314,7 @@ function filterColumn ( i ) {
 
               
        </script>
-    <script>
-      var sketchpad = new Sketchpad({
-        element: '#sketchpad',
-        width: 400,
-        height: 400
-      });
-      sketchpad.penSize = 20;
-      
-      function sketchJSON(){
-        data = sketchpad.toJSON();
-        $.ajax({
-          url : "/",
-          type: "POST",
-          data : {'data': data, 'csrfmiddlewaretoken': '{{ csrf_token }}',},
-          dataType : "json",
-    
-    
-        });
-      };
-    </script>
+   
 
 </body>
 

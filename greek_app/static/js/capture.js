@@ -18,12 +18,14 @@
   var canvas = null;
   var photo = null;
   var startbutton = null;
+  var sketchpad = null;
 
   function startup() {
     video = document.getElementById('video');
-    canvas = document.getElementById('canvas');
+    canvas = document.getElementById('sketchpad');
     photo = document.getElementById('photo');
     startbutton = document.getElementById('startbutton');
+    sketchpad = document.getElementById('sketchpad');
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
     .then(function(stream) {
@@ -70,7 +72,9 @@
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
+    // photo.setAttribute('src', data);
+    sketchpad.style.backgroundImage = "url(" + data + ")";
+
   }
   
   // Capture a photo by fetching the current contents of the video
