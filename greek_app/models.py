@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 import PIL.Image
 from greek_accentuation.characters import base
+from ckeditor.fields import RichTextField
 
 
 class Type(models.Model):
@@ -31,8 +32,8 @@ class Symbol(models.Model):
     place = models.CharField(max_length=220, blank=True, null=True)
     scribe = models.CharField(max_length=220, blank=True, null=True)
     manuscript = models.CharField(max_length=220, blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
-
+    notes = RichTextField(blank=True, null=True)
+    public = models.BooleanField(default=True)
     def __str__(self):
         return self.expansion
 
