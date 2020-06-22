@@ -91,7 +91,8 @@
       context.drawImage(video, 0, 0, width, height);
     
       var data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
+      sketchpad.style.backgroundImage = "url(" + data + ")";
+
       // TODO send data to POST endpoint
     } else {
       clearphoto();
