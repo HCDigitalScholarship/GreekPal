@@ -47,3 +47,7 @@ class TypeAdmin(admin.ModelAdmin):
 
 admin.site.register(Type, TypeAdmin)
 
+class CollectionAdmin(admin.ModelAdmin):
+  pass
+
+admin.site.register(Collection, CollectionAdmin)

@@ -3,6 +3,7 @@ from django.db import models
 import PIL.Image
 from greek_accentuation.characters import base
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 
 class Type(models.Model):
@@ -50,3 +51,6 @@ class Symbol(models.Model):
         #image = image.resize(size)
         image.save(self.image.path)
 
+class Collection(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    symbols = models.ManyToManyField(Symbol, blank=True)
