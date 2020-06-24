@@ -4,6 +4,7 @@ import PIL.Image
 from greek_accentuation.characters import base
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import JSONField
 
 
 class Type(models.Model):
@@ -35,6 +36,7 @@ class Symbol(models.Model):
     manuscript = models.CharField(max_length=220, blank=True, null=True)
     notes = RichTextField(blank=True, null=True)
     public = models.BooleanField(default=True)
+    sketch = JSONField(blank=True, null=True)
     def __str__(self):
         return self.expansion
 
