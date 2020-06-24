@@ -36,7 +36,8 @@ class Symbol(models.Model):
     manuscript = models.CharField(max_length=220, blank=True, null=True)
     notes = RichTextField(blank=True, null=True)
     public = models.BooleanField(default=True)
-    #sketch = models.CharField(max_length=220, blank=True, null=True)
+    sketch = JSONField(blank=True, null=True)
+
     def __str__(self):
         return self.expansion
 

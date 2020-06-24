@@ -16,11 +16,12 @@ def home(request):
         print(data)
         symbols = [s.__dict__ for s in Symbol.objects.all()]
         for symbol in symbols:
-            symbol['similarity'] = similarity(data, symbol['sketchpad'])
+            if symbol['sketch']:
+                symbol['similarity'] = similarity(data, symbol['sketch'])
         context['symbols'] = symbols
         return render(request, 'index.html', context)
     else:
-        symbols = Symbol.objects.all()
+        symbols = [s.__dict__ for s in Symbol.objects.all()]
         context['symbols'] = symbols
         return render(request, 'index.html', context)
 
