@@ -6,14 +6,13 @@ from django.contrib.admin.views.decorators import staff_member_required
 from greek_app.models import Symbol
 from greek_app.similarity import similarity
 from django.utils.html import escape, format_html, mark_safe
-
+import json
 
 def home(request):
     context = {}
 
     if request.POST:
         data = request.POST.get('data',None)
-        print(data)
         symbols = [s.__dict__ for s in Symbol.objects.all()]
         for symbol in symbols:
             if symbol['sketch']:
@@ -29,7 +28,9 @@ def home(request):
 def edit(request):
     if request.POST:
         data = request.POST.get('data',None)
-        print(data)    
+        data = json.loads(data)
+        symbol = Symbol.objects.get(id=data['id'])
+        print(symbol.__dict__)
     context = {}
     symbols = [s.__dict__ for s in Symbol.objects.all()]
     context['symbols'] = symbols

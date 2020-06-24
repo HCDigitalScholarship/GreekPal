@@ -146,7 +146,7 @@
             {% for symbol in symbols %}
             
                           <tr>
-                             <td><img onclick="edit_symbol(this)" src="{% static symbol.image  %}"></td>
+                             <td><img id ="{{ symbol.id }}" onclick="edit_symbol(this)" src="{% static symbol.image  %}"></td>
                             
                             <td>{{ symbol.base_expansion|default_if_none:"" }}</td>
                           <td>{{ symbol.transcription|default_if_none:"" }}</td>
@@ -188,7 +188,7 @@
             sketchpad1 = document.getElementById('sketchpad');
             sketchpad1.style.backgroundImage = "url(" + e.src + ")";
             sketchpad1.style.backgroundSize = "400px 400px"; //TODO this probably needs to be dynamic, hack works for now       
-            
+            sketchpad1.id = e.id;
          
         };
     </script>
@@ -204,15 +204,12 @@
         let data = sketchpad.toJSON(); 
         // data is a string, so I convert to JSON object, add new value and re-stringify
         let data_json = JSON.parse(data);
-        let meep = sketchpad1.style.backgroundImage
-        let start = meep.indexOf('(') + 2;
-        let end = meep.indexOf(')') -1;
-        let src = meep.slice(start,end);
-        data_json.src = src;
+        let meep = sketchpad1.id;
+        data_json.id = meep;
         json = JSON.stringify(data_json);
-
+        console.log(json);
         $.ajax({
-          url : "/",
+          url : "/edit/",
           type: "POST",
           data : {'data': json, 'csrfmiddlewaretoken': '{{ csrf_token }}',},
           dataType : "json",
