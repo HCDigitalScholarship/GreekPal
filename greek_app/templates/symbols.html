@@ -207,7 +207,6 @@
         let meep = sketchpad1.id;
         data_json.id = meep;
         json = JSON.stringify(data_json);
-        console.log(json);
         $.ajax({
           url : "/edit/",
           type: "POST",

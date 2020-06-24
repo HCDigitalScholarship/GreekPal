@@ -29,8 +29,10 @@ def edit(request):
     if request.POST:
         data = request.POST.get('data',None)
         data = json.loads(data)
-        symbol = Symbol.objects.get(id=data['id'])
-        print(symbol.__dict__)
+        data_id = data['id']
+        symbol = Symbol.objects.get(id=data_id)
+        symbol.sketch = data
+        symbol.save()
     context = {}
     symbols = [s.__dict__ for s in Symbol.objects.all()]
     context['symbols'] = symbols
