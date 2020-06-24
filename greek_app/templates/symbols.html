@@ -22,7 +22,7 @@
                   </canvas>
         
                   <img style="display:none;" id="photo" alt="The screen capture will appear in this box.">
-                    <canvas class="sketchpad border border-dark rounded" id="sketchpad" height="400" width="400"><canvas>
+                    <canvas class="sketchpad" id="sketchpad" height="400px" width="400px"><canvas>
                       
                   
         
@@ -146,7 +146,7 @@
             {% for symbol in symbols %}
             
                           <tr>
-                             <td><img onclick="edit_symbol(this)" src="{% static symbol.image.name  %}"></td>
+                             <td><img onclick="edit_symbol(this)" src="{% static symbol.image  %}"></td>
                             
                             <td>{{ symbol.base_expansion|default_if_none:"" }}</td>
                           <td>{{ symbol.transcription|default_if_none:"" }}</td>
@@ -184,13 +184,12 @@
     <script>
        
         function edit_symbol(e){
-            console.log(e.src)
+          $('#CameraModal').modal('toggle');
             sketchpad = document.getElementById('sketchpad');
-            //sketchpad.setAttribute('width', width);
-            //sketchpad.setAttribute('height', height);
             sketchpad.style.backgroundImage = "url(" + e.src + ")";
-            sketchpad.style.backgroundSize = "400px";
-            $('#CameraModal').modal('toggle');
+            sketchpad.style.backgroundSize = "320px 240px"; //TODO this probably needs to be dynamic, hack works for now       
+            
+         
         };
     </script>
     <script>

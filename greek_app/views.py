@@ -28,7 +28,7 @@ def home(request):
 @staff_member_required
 def edit(request):
     context = {}
-    symbols = Symbol.objects.all()
+    symbols = [s.__dict__ for s in Symbol.objects.all()]
     context['symbols'] = symbols
     return render(request, 'symbols.html', context)
 

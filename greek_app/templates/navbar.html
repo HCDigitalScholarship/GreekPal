@@ -4,7 +4,7 @@
     <div class="container"><img src="{% static '/img/logo.png' %}" style="margin-left: -15px; width: 113px;"><a class="navbar-brand logo" href="/">&nbsp;GreekPαl</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="modal" data-target="#CameraModal"><i class="fa fa-camera"></i>&nbsp;Search</a></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="modal" data-target="#CameraModal"><i class="fa fa-camera"></i></a></li>
                 {% if user.is_authenticated %}
                 <li class="nav-item" role="presentation"></li><a class="btn btn-outline-dark" href="{% url 'logout' %}">
                   <svg class="bi bi-box-arrow-in-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
