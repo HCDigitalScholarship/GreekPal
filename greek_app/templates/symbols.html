@@ -178,16 +178,16 @@
     <script src="{% static '/js/Bootstrap-DataTables.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
     <script src="{% static '/js/theme.js' %}"></script>
-    <script src="{% static '/js/capture.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sketchpad/0.1.0/scripts/sketchpad.js"></script>
     <script src="{% static '/js/diacritics.js' %}"></script>
     <script>
        
         function edit_symbol(e){
           $('#CameraModal').modal('toggle');
-            sketchpad = document.getElementById('sketchpad');
-            sketchpad.style.backgroundImage = "url(" + e.src + ")";
-            sketchpad.style.backgroundSize = "320px 240px"; //TODO this probably needs to be dynamic, hack works for now       
+           
+            sketchpad1 = document.getElementById('sketchpad');
+            sketchpad1.style.backgroundImage = "url(" + e.src + ")";
+            sketchpad1.style.backgroundSize = "400px 400px"; //TODO this probably needs to be dynamic, hack works for now       
             
          
         };
@@ -201,11 +201,20 @@
       sketchpad.penSize = 10;
       
       function sketchJSON(){
-        data = sketchpad.toJSON();
+        let data = sketchpad.toJSON(); 
+        // data is a string, so I convert to JSON object, add new value and re-stringify
+        let data_json = JSON.parse(data);
+        let meep = sketchpad1.style.backgroundImage
+        let start = meep.indexOf('(') + 2;
+        let end = meep.indexOf(')') -1;
+        let src = meep.slice(start,end);
+        data_json.src = src;
+        json = JSON.stringify(data_json);
+
         $.ajax({
           url : "/",
           type: "POST",
-          data : {'data': data, 'csrfmiddlewaretoken': '{{ csrf_token }}',},
+          data : {'data': json, 'csrfmiddlewaretoken': '{{ csrf_token }}',},
           dataType : "json",
     
     

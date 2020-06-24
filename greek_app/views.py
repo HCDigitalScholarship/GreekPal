@@ -27,6 +27,9 @@ def home(request):
 
 @staff_member_required
 def edit(request):
+    if request.POST:
+        data = request.POST.get('data',None)
+        print(data)    
     context = {}
     symbols = [s.__dict__ for s in Symbol.objects.all()]
     context['symbols'] = symbols
