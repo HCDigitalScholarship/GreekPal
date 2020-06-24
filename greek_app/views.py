@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django_datatables_view.base_datatable_view import BaseDatatableView
-from greek_app.models import Symbol
+from django.contrib.admin.views.decorators import staff_member_required
 
+from greek_app.models import Symbol
+from greek_app.similarity import similarity
 from django.utils.html import escape, format_html, mark_safe
 
 
@@ -12,7 +14,9 @@ def home(request):
     if request.POST:
         data = request.POST.get('data',None)
         print(data)
-        symbols = Symbol.objects.all()
+        symbols = [s.__dict__ for s in Symbol.objects.all()]
+        for symbol in symbols:
+            symbol['similarity'] = similarity(data, symbol['sketchpad'])
         context['symbols'] = symbols
         return render(request, 'index.html', context)
     else:
@@ -20,9 +24,18 @@ def home(request):
         context['symbols'] = symbols
         return render(request, 'index.html', context)
 
+@staff_member_required
+def edit(request):
+    context = {}
+    symbols = Symbol.objects.all()
+    context['symbols'] = symbols
+    return render(request, 'symbols.html', context)
+
 def logout_view(request):
     logout(request)
     return redirect(home)
+
+
 
 class SymbolJson(BaseDatatableView):
     # the model you're going to show

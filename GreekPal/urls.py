@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('browse/', views.home, name='browse'),
+    path('edit/', views.edit, name='edit'),
     path('symbol-json/', views.SymbolJson.as_view(), name='symbol_json'),
 ]
 
