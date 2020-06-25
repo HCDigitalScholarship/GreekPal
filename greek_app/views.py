@@ -10,14 +10,21 @@ import json
 
 def home(request):
     context = {}
-
     if request.POST:
+
         data = request.POST.get('data',None)
-        symbols = [s.__dict__ for s in Symbol.objects.all()]
-        for symbol in symbols:
-            if symbol['sketch']:
-                symbol['similarity'] = similarity(data, symbol['sketch'])
-        context['symbols'] = symbols
+        print('data?', data)
+
+        results = []
+        if data:
+            data = json.loads(data)
+            symbols = Symbol.objects.all()
+            for symbol in symbols:
+                symbol_dict = symbol.__dict__
+                if symbol.sketch:
+                    symbol_dict['similarity'] = similarity(data, symbol.sketch)
+                results.append(symbol_dict)
+        context['symbols'] = results
         return render(request, 'index.html', context)
     else:
         symbols = [s.__dict__ for s in Symbol.objects.all()]

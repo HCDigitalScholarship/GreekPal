@@ -27,8 +27,8 @@ def similarity(sketch, other_sketch):
     x,y = create_xy_coords('search',sketch)
     P = np.array([x, y]).T
     
-    key = other_sketch.id
-    x1,y1 = create_xy_coords(key,other_sketch)
+    
+    x1,y1 = create_xy_coords(other_sketch['id'],other_sketch)
     Q = np.array([x1, y1]).T
     dh, ind1, ind2 = directed_hausdorff(P, Q)
     df = similaritymeasures.frechet_dist(P, Q)
@@ -37,5 +37,5 @@ def similarity(sketch, other_sketch):
     area = similaritymeasures.area_between_two_curves(P, Q)
     cl = similaritymeasures.curve_length_measure(P, Q)
 
-    result[key] = {"dh":dh, "df":df, "dtw":dtw, "pcw":pcm, "cl":cl, "area":area}
+    result = {"dh":dh, "df":df, "dtw":dtw, "pcw":pcm, "cl":cl, "area":area}
     return result

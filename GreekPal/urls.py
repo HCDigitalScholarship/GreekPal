@@ -24,7 +24,6 @@ from django.contrib.auth import logout
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('browse/', views.home, name='browse'),
     path('edit/', views.edit, name='edit'),
     path('symbol-json/', views.SymbolJson.as_view(), name='symbol_json'),
 ]
@@ -37,6 +36,6 @@ urlpatterns += [
 
 # Social auth
 urlpatterns += [
-    path('', include('social_django.urls', namespace='social')),
+    path('login/', include('social_django.urls', namespace='social')),
     path('logout/', views.logout_view, name='logout'),
 ]
