@@ -141,7 +141,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets"),
+    os.path.join(BASE_DIR, "static"),
     '/srv/greek_env/lib/python3.6/site-packages/ckeditor/static',
 ]
 MEDIA_URL = '/media/'

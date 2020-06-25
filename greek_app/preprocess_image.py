@@ -8,7 +8,7 @@ OUTPUT_IMAGE_SIZE = 400
 Python script that preprocess one image at a time
 Main function to be called to preprocess the image is get_preprocessed_image(image)
 
-get_preprocessed_image(image) doesn't read in the image from path, it takes the already read in 
+get_preprocessed_image(image) reads from path, it takes the already read in 
 image as a parameter and returns preprocessed grayscale image 
 
 """
@@ -54,7 +54,8 @@ def get_resized_image(test_image):
   return blank_image
 
 
-def get_preprocessed_image(image):
+def get_preprocessed_image(path):
+    image = cv2.imread(path,0)
     # first convert to grayscale if it's not already
     if len(image.shape)>2:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -67,8 +68,14 @@ def get_preprocessed_image(image):
 
     # resize image
     resized_image = get_resized_image(outlined_image)
+    cv2.imwrite(path.replace('original','cleaned'),resized_image)
 
-    return resized_image
-
+def resize_image(path):
+    image = cv2.imread(path,0)
+    # first convert to grayscale if it's not already
+  
+    # resize image
+    resized_image = get_resized_image(image)
+    cv2.imwrite(path,resized_image)
 
     

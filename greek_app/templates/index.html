@@ -33,7 +33,7 @@
                   </canvas>
         
                   <img style="display:none;" id="photo" alt="The screen capture will appear in this box.">
-                    <canvas style="margin-left: 25px;"class="sketchpad border border-dark rounded" id="sketchpad" height="400" width="400"><canvas>
+                    <canvas style="margin-left: 10px;"class="sketchpad border border-dark rounded" id="sketchpad" height="400" width="400"><canvas>
                       
                   
         
@@ -163,11 +163,11 @@
             {% for symbol in symbols %}
             
                           <tr>
-                             <td><img src="{% static symbol.image  %}"></td>
+                             <td><img height="100" width="100" src="{% static symbol.image  %}"></td>
                             
                             <td>{{ symbol.base_expansion|default_if_none:"" }}</td>
                           <td>{{ symbol.transcription|default_if_none:"" }}</td>
-                          <td>{{ symbol.type|default_if_none:"" }}</td>
+                          <td>{{ symbol.type.name|default_if_none:"" }}</td>
                             <td>{{ symbol.text|default_if_none:"" }}</td>
                           <td>{{ symbol.date|default_if_none:"" }}</td>
                           <td>{{ symbol.place|default_if_none:"" }}</td>
