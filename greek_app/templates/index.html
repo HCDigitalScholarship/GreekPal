@@ -132,6 +132,11 @@
                 <td align="center"><input type="text" class="column_filter" id="col8_filter"></td>
                
             </tr>
+            <tr id="filter_col10" data-column="8">
+              <td>Similarity</td>
+              <td align="center"><input type="text" class="column_filter" id="col9_filter"></td>
+             
+          </tr>
               </tbody>
           </table>
         </div>
@@ -168,7 +173,7 @@
                           <td>{{ symbol.place|default_if_none:"" }}</td>
                           <td>{{ symbol.scribe|default_if_none:"" }}</td>
                           <td>{{ symbol.manuscript|default_if_none:"" }}</td>
-                          <td>{{ symbol.similarity.dh|default_if_none:"" }}</td>
+                          <td>{{ symbol.similarity|default_if_none:"*" }}</td>
 
                           </tr>
                       {% endfor %}
@@ -214,6 +219,7 @@
     
     
         });
+        $('#CameraModal').modal('toggle');
       };
     </script>
     <script>

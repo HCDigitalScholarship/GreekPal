@@ -13,8 +13,6 @@ def home(request):
     if request.POST:
 
         data = request.POST.get('data',None)
-        print('data?', data)
-
         results = []
         if data:
             data = json.loads(data)
@@ -22,8 +20,11 @@ def home(request):
             for symbol in symbols:
                 symbol_dict = symbol.__dict__
                 if symbol.sketch:
-                    symbol_dict['similarity'] = similarity(data, symbol.sketch)
+                    similarity0 = similarity(data, symbol.sketch)
+                    symbol_dict['similarity'] = str(similarity0['dh'])
+                    print('added similarity', symbol_dict)
                 results.append(symbol_dict)
+                
         context['symbols'] = results
         return render(request, 'index.html', context)
     else:
