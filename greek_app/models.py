@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-import PIL.Image
+from PIL import Image
 from greek_accentuation.characters import base
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
@@ -16,28 +16,26 @@ class Type(models.Model):
     def __str__(self):
         return self.name
 
-class Image(models.Model):
-    file = models.ImageField(upload_to='symbols/')
-
-    def __str__(self):
-        return self.file.name
 
 # Create your models here.
 class Symbol(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    image = models.ImageField(upload_to='symbols/original', blank=True, null=True, editable=True,)
-    image_height = models.PositiveIntegerField(null=True, blank=True, editable=False, default="150")
+    image = models.ImageField(upload_to='symbols/', blank=True, null=True, editable=True,)
+    image_height = models.PositiveIntegerField(null=True, blank=True, editable=False, default="400")
     image_width = models.PositiveIntegerField(null=True, blank=True, editable=False, default=None)
-    cleaned = models.ImageField(upload_to='symbols/cleaned', blank=True, null=True, editable=True,)
     expansion = models.CharField(max_length=220, blank=True, null=True)
     base_expansion = models.CharField(max_length=220, blank=True, null=True)
     transcription = models.CharField(max_length=220, blank=True, null=True)
     type = models.ForeignKey(Type, on_delete=models.CASCADE, blank=True, null=True, related_name='symbol_type')
-    text = models.CharField(max_length=220, blank=True, null=True)
+    author = models.CharField(max_length=220, blank=True, null=True)
+    text_title = models.CharField(max_length=220, blank=True, null=True)
+    archive =  models.CharField(max_length=220, blank=True, null=True)
+    city =  models.CharField(max_length=220, blank=True, null=True)
     date = models.CharField(max_length=220, blank=True, null=True)
     place = models.CharField(max_length=220, blank=True, null=True)
     scribe = models.CharField(max_length=220, blank=True, null=True)
-    manuscript = models.CharField(max_length=220, blank=True, null=True)
+    folia = models.CharField(max_length=220, blank=True, null=True)
+    manuscript_shelfmark = models.CharField(max_length=220, blank=True, null=True)
     notes = RichTextField(blank=True, null=True)
     public = models.BooleanField(default=True)
     sketch = JSONField(blank=True, null=True)
@@ -51,9 +49,10 @@ class Symbol(models.Model):
             return
 
         super(Symbol, self).save()
-        resize_image(self.image.path) #resizes to 400,400 and saves to static/symbols/original
-        get_preprocessed_image(self.image.path) #creates the cleaned file and saves to static/symbols/cleaned
-        self.cleaned.save(self.image.path.split('/')[-1], ContentFile(Path(self.image.path.replace('original','cleaned')).read_bytes()), save=False)
+        im = Image.open(self.image)
+        size = 400,400
+        im.thumbnail(size, Image.ANTIALIAS)
+        im.save(self.image.path, "JPEG")
 
         
 
