@@ -1,6 +1,7 @@
 /GreekPal/settings.py
 /GreekPal/settings_secret.py
 greek_app/migrations/
+greek_app/static/symbols
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

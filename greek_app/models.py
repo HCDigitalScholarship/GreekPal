@@ -26,7 +26,7 @@ class Symbol(models.Model):
     expansion = models.CharField(max_length=220, blank=True, null=True)
     base_expansion = models.CharField(max_length=220, blank=True, null=True)
     transcription = models.CharField(max_length=220, blank=True, null=True)
-    type = models.ForeignKey(Type, on_delete=models.CASCADE, blank=True, null=True, related_name='symbol_type')
+    symbol_type = models.ForeignKey(Type, on_delete=models.CASCADE, blank=True, null=True, related_name='symbol_type')
     author = models.CharField(max_length=220, blank=True, null=True)
     text_title = models.CharField(max_length=220, blank=True, null=True)
     archive =  models.CharField(max_length=220, blank=True, null=True)
@@ -41,18 +41,18 @@ class Symbol(models.Model):
     sketch = JSONField(blank=True, null=True)
 
     def __str__(self):
-        return self.expansion
+        return 'hello' #self.expansion
 
-    def save(self):
-        self.base_expansion = ''.join([base(i) for i in self.expansion])
+    def save(self, *args, **kwargs):
+        self.base_expansion = ''.join([base(i) for i in self.base_expansion])
         if not self.image:
             return
 
         super(Symbol, self).save()
-        im = Image.open(self.image)
-        size = 400,400
-        im.thumbnail(size, Image.ANTIALIAS)
-        im.save(self.image.path, "JPEG")
+        # im = Image.open(self.image)
+        # size = 400,400
+        # im.thumbnail(size, Image.ANTIALIAS)
+        # im.save(self.image.path, "JPEG")
 
         
 

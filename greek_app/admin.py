@@ -27,11 +27,12 @@ admin.site.register(FlatPage, FlatPageAdmin)
 
 # Register your models here.
 class SymbolAdmin(admin.ModelAdmin):
-    list_display = ('expansion','type','date','manuscript_shelfmark')
-    search_fields = ['expansion',]
+
+    list_display = ('base_expansion','symbol_type','date','manuscript_shelfmark')
+    search_fields = ['base_expansion',]
     exclude = ['sketch',]
-    list_filter = ('type', 'date','scribe','manuscript_shelfmark')
-    autocomplete_fields = ['type']
+    list_filter = ('symbol_type', 'date','scribe','manuscript_shelfmark')
+    autocomplete_fields = ['symbol_type']
 
 admin.site.register(Symbol, SymbolAdmin)
 

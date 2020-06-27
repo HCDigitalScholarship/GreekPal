@@ -42,10 +42,9 @@ INSTALLED_APPS = [
     'ckeditor',
     'greek_app',
     'social_django',
-    #'datatables_view',
 ]
 
-#SITE_ID = 1
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,11 +140,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "greek_app", "static"),
     '/srv/greek_env/lib/python3.6/site-packages/ckeditor/static',
 ]
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'greek_app', 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'greek_app', 'static','symbols')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
