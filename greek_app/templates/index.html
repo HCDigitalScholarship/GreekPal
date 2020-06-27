@@ -80,7 +80,7 @@
             </button>
            
 <div id="searchbars" class="collapse">
-            <table cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
+            <table cellpadding="3" cellspacing="0" border="0" style="width: 90%; margin: 0 auto 2em auto;">
               <thead>
                   <tr>
                       <th></th>
@@ -167,13 +167,13 @@
                             
                             <td>{{ symbol.base_expansion|default_if_none:"" }}</td>
                           <td>{{ symbol.transcription|default_if_none:"" }}</td>
-                          <td>{{ symbol.type|default_if_none:"" }}</td>
+                          <td>{{ symbol.symbol_type|default_if_none:"" }}</td>
                             <td>{{ symbol.text_title|default_if_none:"" }}</td>
                           <td>{{ symbol.date|default_if_none:"" }}</td>
                           <td>{{ symbol.place|default_if_none:"" }}</td>
                           <td>{{ symbol.scribe|default_if_none:"" }}</td>
-                          <td>{{ symbol.manuscript|default_if_none:"" }}</td>
-                          <td>{{ symbol.similarity|default_if_none:"*" }}</td>
+                          <td>{{ symbol.manuscript_shelfmark|default_if_none:"" }}</td>
+                          <td>{{ symbol.similarity|default_if_none:"---" }}</td>
 
                           </tr>
                       {% endfor %}

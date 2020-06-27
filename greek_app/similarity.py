@@ -24,18 +24,20 @@ def similarity(sketch, other_sketch):
     other_sketch = saved json output from Django 
     """
     result = {}
-    x,y = create_xy_coords('search',sketch)
-    P = np.array([x, y]).T
-    
-    
-    x1,y1 = create_xy_coords(other_sketch['id'],other_sketch)
-    Q = np.array([x1, y1]).T
-    dh, ind1, ind2 = directed_hausdorff(P, Q)
-    df = similaritymeasures.frechet_dist(P, Q)
-    dtw, d = similaritymeasures.dtw(P, Q)
-    pcm = similaritymeasures.pcm(P, Q)
-    area = similaritymeasures.area_between_two_curves(P, Q)
-    cl = similaritymeasures.curve_length_measure(P, Q)
+    if isinstance(sketch, dict) and isinstance(other_sketch, dict):
+        x,y = create_xy_coords('search',sketch)
+        P = np.array([x, y]).T
+        
+        x1,y1 = create_xy_coords('other',other_sketch)
+        Q = np.array([x1, y1]).T
+        dh, ind1, ind2 = directed_hausdorff(P, Q)
+        df = similaritymeasures.frechet_dist(P, Q)
+        dtw, d = similaritymeasures.dtw(P, Q)
+        pcm = similaritymeasures.pcm(P, Q)
+        area = similaritymeasures.area_between_two_curves(P, Q)
+        cl = similaritymeasures.curve_length_measure(P, Q)
 
-    result = {"dh":dh, "df":df, "dtw":dtw, "pcw":pcm, "cl":cl, "area":area}
-    return result
+        result = {"dh":dh, "df":df, "dtw":dtw, "pcw":pcm, "cl":cl, "area":area}
+        return result
+    else:
+        return {"dh":0}

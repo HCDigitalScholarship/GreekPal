@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
 
-from greek_app.models import Symbol
+from greek_app.models import Symbol, Type
 from greek_app.similarity import similarity
 from django.utils.html import escape, format_html, mark_safe
 import json
@@ -19,16 +20,28 @@ def home(request):
             symbols = Symbol.objects.all()
             for symbol in symbols:
                 symbol_dict = symbol.__dict__
-                if symbol.sketch:
+                symbol_type_id = symbol_dict.get('symbol_type_id')
+                if  symbol_type_id:
+                    symbol_dict['symbol_type'] = Type.objects.get(id=symbol_type_id).name
+
+                if not symbol.sketch is None:
                     similarity0 = similarity(data, symbol.sketch)
-                    symbol_dict['similarity'] = str(similarity0['dh'])
-                    print('added similarity', symbol_dict)
+                    symbol_dict['similarity'] = round(similarity0['dh'],4)
+                else:
+                     symbol_dict['similarity'] = 0
+                
                 results.append(symbol_dict)
                 
         context['symbols'] = results
+
         return render(request, 'index.html', context)
     else:
         symbols = [s.__dict__ for s in Symbol.objects.all()]
+        for symbol in symbols:
+            symbol_type_id = symbol.get('symbol_type_id')
+            if  symbol_type_id:
+                symbol['symbol_type'] = Type.objects.get(id=symbol_type_id).name
+            
         context['symbols'] = symbols
         return render(request, 'index.html', context)
 
