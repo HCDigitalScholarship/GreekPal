@@ -92,51 +92,51 @@
                 <!-- src https://datatables.net/examples/api/regex.html -->
                  
                  
-                  <tr id="filter_col2" data-column="1">
-                      <td>Base Expansion</td>
-                      <td align="center"><input type="text" class="column_filter" id="col1_filter"></td>
-                    
-                  </tr>
-                  <tr id="filter_col3" data-column="2">
-                      <td>Transcription</td>
-                      <td align="center"><input type="text" class="column_filter" id="col2_filter"></td>
-                      
-                  </tr>
-                  <tr id="filter_col4" data-column="3">
-                      <td>Type</td>
-                      <td align="center"><input type="text" class="column_filter" id="col3_filter"></td>
-                      
-                  </tr>
-                  <tr id="filter_col5" data-column="4">
-                      <td>Text</td>
-                      <td align="center"><input type="text" class="column_filter" id="col4_filter"></td>
-                     
-                  </tr>
-                  <tr id="filter_col6" data-column="5">
-                      <td>Date</td>
-                      <td align="center"><input type="text" class="column_filter" id="col5_filter"></td>
-                     
-                  </tr>
-                  <tr id="filter_col7" data-column="6">
-                    <td>Place</td>
-                    <td align="center"><input type="text" class="column_filter" id="col6_filter"></td>
-                   
-                </tr>
-                <tr id="filter_col8" data-column="7">
-                  <td>Scribe</td>
-                  <td align="center"><input type="text" class="column_filter" id="col7_filter"></td>
+                <tr id="filter_col2" data-column="1">
+                  <td>Base Expansion</td>
+                  <td align="center"><input type="text" class="column_filter" id="col1_filter"></td>
+                
+              </tr>
+              <tr id="filter_col3" data-column="2">
+                  <td>Transcription</td>
+                  <td align="center"><input type="text" class="column_filter" id="col2_filter"></td>
+                  
+              </tr>
+              <tr id="filter_col4" data-column="3">
+                  <td>Type</td>
+                  <td align="center"><input type="text" class="column_filter" id="col3_filter"></td>
+                  
+              </tr>
+              <tr id="filter_col5" data-column="4">
+                  <td>Text</td>
+                  <td align="center"><input type="text" class="column_filter" id="col4_filter"></td>
                  
               </tr>
-              <tr id="filter_col9" data-column="8">
-                <td>Manuscript</td>
-                <td align="center"><input type="text" class="column_filter" id="col8_filter"></td>
+              <tr id="filter_col6" data-column="5">
+                  <td>Date</td>
+                  <td align="center"><input type="text" class="column_filter" id="col5_filter"></td>
+                 
+              </tr>
+              <tr id="filter_col7" data-column="6">
+                <td>Place</td>
+                <td align="center"><input type="text" class="column_filter" id="col6_filter"></td>
                
             </tr>
-            <tr id="filter_col10" data-column="8">
-              <td>Similarity</td>
-              <td align="center"><input type="text" class="column_filter" id="col9_filter"></td>
+            <tr id="filter_col8" data-column="7">
+              <td>Scribe</td>
+              <td align="center"><input type="text" class="column_filter" id="col7_filter"></td>
              
           </tr>
+          <tr id="filter_col9" data-column="8">
+            <td>Manuscript</td>
+            <td align="center"><input type="text" class="column_filter" id="col8_filter"></td>
+           
+        </tr>
+        <tr id="filter_col10" data-column="8">
+          <td>Similarity</td>
+          <td align="center"><input type="text" class="column_filter" id="col9_filter"></td>
+         
+      </tr>
               </tbody>
           </table>
         </div>
@@ -154,6 +154,7 @@
               <th>Scribe</th>
               <th>Manuscript</th>
               <th>Similarity</th>
+
             </tr>
           </thead>
                  
@@ -163,7 +164,7 @@
             {% for symbol in symbols %}
             
                           <tr>
-                             <td><img height="100" width="100" src="{% static symbol.image  %}"></td>
+                            <td><img height="100" width="100" src="{% static symbol.image.name  %}"></td>
                             
                             <td>{{ symbol.base_expansion|default_if_none:"" }}</td>
                           <td>{{ symbol.transcription|default_if_none:"" }}</td>
@@ -173,7 +174,7 @@
                           <td>{{ symbol.place|default_if_none:"" }}</td>
                           <td>{{ symbol.scribe|default_if_none:"" }}</td>
                           <td>{{ symbol.manuscript_shelfmark|default_if_none:"" }}</td>
-                          <td>{{ symbol.similarity|default_if_none:"---" }}</td>
+                          <td>{{ symbol.similarity|default_if_none:"-" }}</td>
 
                           </tr>
                       {% endfor %}
@@ -254,7 +255,6 @@ function filterColumn ( i ) {
            var table = $('#symboltable').DataTable( {
                 // "processing": true,
                 // "serverSide": true,
-                // "ajax": "{% url 'symbol_json' %}"
             
        
            } );

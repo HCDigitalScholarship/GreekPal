@@ -183,12 +183,19 @@
     <script>
        
         function edit_symbol(e){
+          let symbol_json = null;
+
           $('#CameraModal').modal('toggle');
+          let id = e.id
            
-            sketchpad1 = document.getElementById('sketchpad');
-            sketchpad1.style.backgroundImage = "url(" + e.src + ")";
-            sketchpad1.style.backgroundSize = "400px 400px"; //TODO this probably needs to be dynamic, hack works for now       
-            sketchpad1.id = e.id;
+          // $.getJSON("/symbol_json/" + id,function(data){
+          //       return symbol_json;
+          //   });
+            
+          sketchpad1 = document.getElementById('sketchpad');
+          sketchpad1.style.backgroundImage = "url(" + e.src + ")";
+          sketchpad1.style.backgroundSize = "400px 400px"; //TODO this probably needs to be dynamic, hack works for now       
+          sketchpad1.id = e.id;
          
         };
     </script>
@@ -201,6 +208,7 @@
       sketchpad.penSize = 10;
       
       function sketchJSON(){
+        
         let data = sketchpad.toJSON(); 
         // data is a string, so I convert to JSON object, add new value and re-stringify
         let data_json = JSON.parse(data);
@@ -215,6 +223,7 @@
     
     
         });
+        
         $('#CameraModal').modal('toggle');
       };
     </script>

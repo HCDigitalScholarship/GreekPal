@@ -39,6 +39,7 @@ class Symbol(models.Model):
     notes = RichTextField(blank=True, null=True)
     public = models.BooleanField(default=True)
     sketch = JSONField(blank=True, null=True)
+    similarity = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return 'hello' #self.expansion

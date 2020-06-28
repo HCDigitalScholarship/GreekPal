@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('edit/', views.edit, name='edit'),
-    path('symbol-json/', views.SymbolJson.as_view(), name='symbol_json'),
+    #path('symbol-json/', views.SymbolJson.as_view(), name='symbol_json'),
+    path('symbol_json/<symbol_id>', views.symbol_json, name='symbol_json'),
 ]
 
 # flat pages 
