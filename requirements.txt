@@ -14,7 +14,7 @@ django-datatables-view==1.19.0
 django-js-asset==1.2.2
 greek-accentuation==1.2.0
 idna==2.9
-ipython==7.15.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 jedi==0.17.1
 numpy==1.19.0
